@@ -1,7 +1,7 @@
 import Category from '../common/Category/category';
 import Item from './item';
 
-function ProductHome({ hidePO, prdtList }) {
+function ProductHome({ hidePO, prdtList, onClickLoadMore }) {
     let showPO = {
         display: 'block',
     };
@@ -23,9 +23,12 @@ function ProductHome({ hidePO, prdtList }) {
                     <Item productsData={prdtList} />
                 </div>
                 <div className="flex-c-m flex-w w-full p-t-45">
-                    <a href="#" className="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                    <button
+                        className="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
+                        onClick={onClickLoadMore}
+                    >
                         Load More
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>

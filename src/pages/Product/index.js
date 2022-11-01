@@ -6,9 +6,10 @@ import ProductHome from '~/components/Layout/product/productHome';
 const Product = () => {
     const [prdtList, setPrdtList] = useState([]);
     const [error, setError] = useState(false);
-
+    let countPage = 1;
+    let limit = 4;
     const loadProductList = () => {
-        getProductList().then((data) => {
+        getProductList(countPage, limit).then((data) => {
             if (data.error) {
                 setError(data.error);
                 console.log('error');
