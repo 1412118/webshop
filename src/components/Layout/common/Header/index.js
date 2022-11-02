@@ -11,15 +11,30 @@ const containerClass = 'container-menu-desktop';
 const fixContainerClass = 'fix-menu-desktop';
 let headerClassName = '';
 let boxShadow = ['wrap-menu-desktop'];
+let isActive = false;
 
 function Header(props) {
     const [containerClassName, setHeaderClassName] = useState(cx(containerClass));
-
+    const [btnShowMenuMobileHeader, setShowMenuMobileHeader] = useState([
+        'btn-show-menu-mobile',
+        'hamburger',
+        'hamburger--squeeze',
+    ]);
     const handleScroll = () => {
         if (window.pageYOffset >= 100) {
             setHeaderClassName(cx(containerClass, fixContainerClass));
         } else if (window.pageYOffset < 100) {
             setHeaderClassName(cx(containerClass));
+        }
+    };
+
+    const showMenuMobile = () => {
+        if (btnShowMenuMobileHeader.includes('is-active')) {
+            isActive = false;
+            setShowMenuMobileHeader((prevState) => prevState.splice(0, prevState.length - 1));
+        } else {
+            isActive = true;
+            setShowMenuMobileHeader([...btnShowMenuMobileHeader, 'is-active']);
         }
     };
 
@@ -58,14 +73,14 @@ function Header(props) {
                 </div>
                 <div className={cx(...boxShadow)}>
                     <nav className={cx('limiter-menu-desktop', 'p-l-45')}>
-                        <Link to="#" className={cx('logo')}>
+                        <Link to="/" className={cx('logo')}>
                             <img src={require('~/assets/images/logo-01.png')} alt="IMG-LOGO" />
                         </Link>
 
                         <div className={cx('menu-desktop')}>
                             <ul className={cx('main-menu')}>
                                 <li>
-                                    <Link to="index.html">Home</Link>
+                                    <Link to="/">Home</Link>
                                     <ul className={cx('sub-menu')}>
                                         <li>
                                             <Link to="index.html">Homepage 1</Link>
@@ -176,17 +191,17 @@ function Header(props) {
                     </div>
                 </div>
 
-                <div className={cx('btn-show-menu-mobile', 'hamburger', 'hamburger--squeeze')}>
+                <div className={cx(...btnShowMenuMobileHeader)} onClick={showMenuMobile}>
                     <span className="hamburger-box">
                         <span className="hamburger-inner"></span>
                     </span>
                 </div>
             </div>
 
-            <div className={cx('menu-mobile')}>
+            <div className={cx('menu-mobile')} style={{ display: isActive ? 'block' : 'none' }}>
                 <ul className={cx('main-menu-m')}>
                     <li>
-                        <Link to="index.html">Home</Link>
+                        <Link to="/">Home</Link>
                         <ul className={cx('sub-menu-m')}>
                             <li>
                                 <Link to="index.html">Homepage 1</Link>
@@ -201,7 +216,7 @@ function Header(props) {
                     </li>
 
                     <li>
-                        <Link to="product.html">Shop</Link>
+                        <Link to="/product">Shop</Link>
                     </li>
 
                     <li className={cx('label1')}>

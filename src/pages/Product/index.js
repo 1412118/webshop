@@ -4,33 +4,50 @@ import Footer from '~/components/Layout/common/Footer';
 import ProductHome from '~/components/Layout/product/productHome';
 
 const Product = () => {
-    const [prdtList, setPrdtList] = useState([]);
+    const [prdtListState, setPrdtListState] = useState({
+        products: [],
+        page: 1,
+        curHeight: 200,
+    });
     const [error, setError] = useState(false);
-    let countPage = 1;
+    //const [curHeight, setHeight] = useState(200);
     let limit = 4;
+    useEffect(() => {
+        loadProductList();
+    }, [prdtListState.page]);
+
+    window.onscroll = () => handleScroll();
+
+    const handleScroll = () => {
+        console.log(window.pageYOffset);
+        if (window.pageYOffset >= prdtListState.curHeight) {
+            setPrdtListState((prevState) => ({
+                products: prevState.products,
+                page: prevState.page + 1,
+                curHeight: prevState.curHeight + 200,
+            }));
+        }
+    };
+
     const loadProductList = () => {
-        getProductList(countPage, limit).then((data) => {
+        getProductList(prdtListState.page, limit).then((data) => {
             if (data.error) {
                 setError(data.error);
                 console.log('error');
             } else {
-                setPrdtList(data);
+                setPrdtListState((prevState) => ({
+                    products: prevState.products.concat(data),
+                    page: prevState.page,
+                    curHeight: prevState.curHeight,
+                }));
                 console.log(data);
             }
         });
     };
 
-    const init = () => {
-        loadProductList();
-    };
-
-    useEffect(() => {
-        init();
-    }, []);
-
     return (
         <>
-            <ProductHome hidePO={true} prdtList={prdtList} />
+            <ProductHome hidePO={true} prdtList={prdtListState.products} />
             <Footer />
         </>
     );

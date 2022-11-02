@@ -9,29 +9,28 @@ const Home = () => {
     let setClassNameBody = () => {
         document.body.classList.add('animsition');
     };
-    debugger;
+
     const [prdtListState, setPrdtListState] = useState({
         products: [],
         page: 1,
     });
     const [error, setError] = useState(false);
-    //const [countPage, setCount] = useState(1);
     let limit = 4;
-    let arr = [];
+
     useEffect(() => {
         init();
     }, [prdtListState.page]);
+
     const init = () => {
         loadProductList();
     };
+
     const loadProductList = () => {
         getProductList(prdtListState.page, limit).then((data) => {
             if (data.error) {
                 setError(data.error);
                 console.log('error');
             } else {
-                //arr = prdtListState.products.concat(data);
-                //console.log(arr);
                 setPrdtListState((prevState) => ({
                     products: prevState.products.concat(data),
                     page: prevState.page,
@@ -42,7 +41,6 @@ const Home = () => {
     };
 
     const loadMoreClick = () => {
-        debugger;
         setPrdtListState((prevState) => ({
             products: prevState.products,
             page: prevState.page + 1,
