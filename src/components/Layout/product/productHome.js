@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
+import { getProductList } from '~/components/Core/coreAPI';
 import Category from '../common/Category/category';
 import Item from './item';
 
-function ProductHome({ hidePO, prdtList, onClickLoadMore }) {
+function ProductHome({ hidePO }) {
     let showPO = {
         display: 'block',
     };
@@ -12,6 +14,59 @@ function ProductHome({ hidePO, prdtList, onClickLoadMore }) {
         return hidePO == true ? invisiblePO : showPO;
     }
 
+    const [prdtListState, setPrdtListState] = useState({
+        products: [],
+        page: 1,
+        curHeight: 200,
+    });
+    const [error, setError] = useState(false);
+    let limit = 4;
+
+    useEffect(() => {
+        init();
+    }, [prdtListState.page]);
+
+    const init = () => {
+        loadProductList();
+    };
+
+    // window.onscroll = () => handleScroll();
+
+    // const handleScroll = () => {
+    //     console.log(window.pageYOffset);
+    //     if (window.pageYOffset >= prdtListState.curHeight) {
+    //         setPrdtListState((prevState) => ({
+    //             products: prevState.products,
+    //             page: prevState.page + 1,
+    //             curHeight: prevState.curHeight + 200,
+    //         }));
+    //     }
+    // };
+
+    const loadProductList = () => {
+        getProductList(prdtListState.page, limit).then((data) => {
+            if (data.error) {
+                setError(data.error);
+                console.log('error');
+            } else {
+                setPrdtListState((prevState) => ({
+                    products: prevState.products.concat(data),
+                    page: prevState.page,
+                    curHeight: prevState.curHeight,
+                }));
+                console.log(data);
+            }
+        });
+    };
+
+    const onClickLoadMore = () => {
+        setPrdtListState((prevState) => ({
+            products: prevState.products,
+            page: prevState.page + 1,
+            curHeight: prevState.curHeight,
+        }));
+    };
+
     return (
         <section className="bg0 p-t-23 p-b-140">
             <div className="container">
@@ -20,7 +75,7 @@ function ProductHome({ hidePO, prdtList, onClickLoadMore }) {
                 </div>
                 <Category />
                 <div className="row isotope-grid">
-                    <Item productsData={prdtList} />
+                    <Item productsData={prdtListState.products} />
                 </div>
                 <div className="flex-c-m flex-w w-full p-t-45">
                     <button

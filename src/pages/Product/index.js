@@ -4,14 +4,16 @@ import Footer from '~/components/Layout/common/Footer';
 import ProductHome from '~/components/Layout/product/productHome';
 
 const Product = () => {
+    /*let limit = 4;
+
     const [prdtListState, setPrdtListState] = useState({
         products: [],
         page: 1,
         curHeight: 200,
     });
+
     const [error, setError] = useState(false);
-    //const [curHeight, setHeight] = useState(200);
-    let limit = 4;
+
     useEffect(() => {
         loadProductList();
     }, [prdtListState.page]);
@@ -43,11 +45,11 @@ const Product = () => {
                 console.log(data);
             }
         });
-    };
+    };*/
 
     return (
         <>
-            <ProductHome hidePO={true} prdtList={prdtListState.products} />
+            <ProductHome hidePO={true} />
             <Footer />
         </>
     );

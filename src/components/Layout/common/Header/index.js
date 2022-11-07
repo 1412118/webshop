@@ -44,6 +44,9 @@ function Header(props) {
     if (props.type !== 'Home') {
         headerClassName = 'header-v4';
         boxShadow.push('how-shadow1');
+    } else {
+        headerClassName = '';
+        boxShadow = ['wrap-menu-desktop'];
     }
     return (
         <header className={cx(headerClassName)}>
@@ -81,7 +84,7 @@ function Header(props) {
                             <ul className={cx('main-menu')}>
                                 <li>
                                     <Link to="/">Home</Link>
-                                    <ul className={cx('sub-menu')}>
+                                    {/* <ul className={cx('sub-menu')}>
                                         <li>
                                             <Link to="index.html">Homepage 1</Link>
                                         </li>
@@ -91,7 +94,7 @@ function Header(props) {
                                         <li>
                                             <Link to="home-03.html">Homepage 3</Link>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
 
                                 <li>
