@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
@@ -20,6 +20,7 @@ function Header(props) {
         'hamburger',
         'hamburger--squeeze',
     ]);
+    let location = useLocation();
     const handleScroll = () => {
         if (window.pageYOffset >= 100) {
             setHeaderClassName(cx(containerClass, fixContainerClass));
@@ -40,9 +41,9 @@ function Header(props) {
 
     useEffect(() => {
         window.onscroll = () => handleScroll();
-    }, []);
-    debugger; // IMPORTANT, This will cause react to update depending on change of this value
-    if (props.type !== 'Home') {
+    }, []); // IMPORTANT, This will cause react to update depending on change of this value
+
+    if (location.pathname !== '/') {
         headerClassName = 'header-v4';
         boxShadow.push('how-shadow1');
     } else {
