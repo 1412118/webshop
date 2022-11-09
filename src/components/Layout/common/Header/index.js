@@ -40,7 +40,8 @@ function Header(props) {
 
     useEffect(() => {
         window.onscroll = () => handleScroll();
-    }, []); // IMPORTANT, This will cause react to update depending on change of this value
+    }, []);
+    debugger; // IMPORTANT, This will cause react to update depending on change of this value
     if (props.type !== 'Home') {
         headerClassName = 'header-v4';
         boxShadow.push('how-shadow1');
