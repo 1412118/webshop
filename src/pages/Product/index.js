@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { getProductList } from '~/components/Core/coreAPI';
+import { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Footer from '~/components/Layout/common/Footer';
 import ProductHome from '~/components/Layout/product/productHome';
+import Context from '~/store/Context';
 
 const Product = () => {
     /*let limit = 4;
@@ -46,10 +47,13 @@ const Product = () => {
             }
         });
     };*/
-
+    const { productOverview, setProductOverview } = useContext(Context);
+    useEffect(() => {
+        setProductOverview(true);
+    }, []);
     return (
         <>
-            <ProductHome hidePO={true} />
+            <ProductHome />
             <Footer />
         </>
     );

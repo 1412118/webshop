@@ -5,7 +5,7 @@ function DefaultLayout({ children }) {
     //let headerClassName = children.type.name === 'Product' ? 'header-v4' : '';
     return (
         <>
-            <Header type={children.type.name} />
+            <Header />
             <div>{children}</div>
         </>
     );

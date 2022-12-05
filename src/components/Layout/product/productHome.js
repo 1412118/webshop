@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getProductList } from '~/components/Core/coreAPI';
+import Context from '~/store/Context';
 import Category from '../common/Category/category';
 import Item from './item';
 
-function ProductHome({ hidePO }) {
-    let showPO = {
-        display: 'block',
-    };
-    let invisiblePO = {
-        display: 'none',
-    };
+function ProductHome() {
+    const { productOverview } = useContext(Context);
     function hideProductOverview() {
-        return hidePO == true ? invisiblePO : showPO;
+        return productOverview === true
+            ? {
+                  display: 'none',
+              }
+            : {
+                  display: 'block',
+              };
     }
 
     const [prdtListState, setPrdtListState] = useState({

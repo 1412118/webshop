@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Header.module.scss';
 import '~/assets/fonts/iconic/css/material-design-iconic-font.css';
 import './hamburgers.css';
+import Context from '~/store/Context';
 
 const cx = classNames.bind(styles);
 const containerClass = 'container-menu-desktop';
@@ -13,7 +14,7 @@ let headerClassName = '';
 let boxShadow = ['wrap-menu-desktop'];
 let isActive = false;
 
-function Header(props) {
+function Header() {
     const [containerClassName, setHeaderClassName] = useState(cx(containerClass));
     const [btnShowMenuMobileHeader, setShowMenuMobileHeader] = useState([
         'btn-show-menu-mobile',
