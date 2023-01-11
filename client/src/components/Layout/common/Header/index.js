@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import '~/assets/fonts/iconic/css/material-design-iconic-font.css';
 import './hamburgers.css';
-import Context from '~/store/Context';
+import LoginIcon from '@mui/icons-material/Login';
 
 const cx = classNames.bind(styles);
 const containerClass = 'container-menu-desktop';
@@ -40,9 +40,27 @@ function Header() {
         }
     };
 
+    const resizeWidth = () => {
+        if(window.innerWidth >= 991){
+            isActive = false;
+            setShowMenuMobileHeader((prevState) => prevState.splice(0, prevState.length - 1));
+        }
+        else{
+            setShowMenuMobileHeader([...btnShowMenuMobileHeader]);
+        }
+        window.addEventListener('resize', resizeWidth);
+        return () => {
+            window.removeEventListener('resize', resizeWidth);
+        }
+    }
+
     useEffect(() => {
         window.onscroll = () => handleScroll();
     }, []); // IMPORTANT, This will cause react to update depending on change of this value
+
+    useEffect(() => {
+        resizeWidth();
+    }, [window.innerWidth])
 
     if (location.pathname !== '/') {
         headerClassName = 'header-v4';
@@ -154,12 +172,17 @@ function Header() {
                                 </div>
                             </div>
                         </div>
+                        <div className="flex-c-m h-full p-r-25 bor6">
+                            <Link to="/register">
+                                <LoginIcon sx={{fontSize: 26, color:'black'}}/>
+                            </Link>
+                        </div>
                     </nav>
                 </div>
             </div>
             <div className={cx('wrap-header-mobile')}>
                 <div className={cx('logo-mobile')}>
-                    <Link to="index.html">
+                    <Link to='/'>
                         <img src={require('~/assets/images/logo-01.png')} alt="IMG-LOGO" />
                     </Link>
                 </div>

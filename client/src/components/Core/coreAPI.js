@@ -5,3 +5,11 @@ export const getProductList = (page, limit) => {
         .then((res) => res.json())
         .catch((e) => e);
 };
+
+export const register = (data) => {
+    return fetch(`https://6356d5a99243cf412f8e9924.mockapi.io/api/users`, {
+        method: 'POST',
+    })
+        .then((res) => res.json)
+        .catch((e) => e);
+};

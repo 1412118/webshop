@@ -1,0 +1,17 @@
+GET https://6356d5a99243cf412f8e9924.mockapi.io/api/products?page=1&limit=4
+
+###
+
+POST https://6356d5a99243cf412f8e9924.mockapi.io/api/users
+Content-Type: application/json
+
+{
+    "id": "1",
+    "email": "dat",
+    "password": "dat",
+    "fullname": "dat"
+}
+
+
+###
+GET https://6356d5a99243cf412f8e9924.mockapi.io/api/users/1
