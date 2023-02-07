@@ -10,6 +10,8 @@ import PasswordField from '~/components/Layout/common/FormCotrols/PasswordField'
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar } from '@mui/material';
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -66,6 +68,9 @@ function RegisterForm(props) {
                     alignItems: 'center',
                 }}
             >
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>

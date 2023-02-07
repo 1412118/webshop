@@ -1,19 +1,21 @@
-import { useState, useEffect, useContext } from 'react';
-import { getProductList } from '~/components/Core/coreAPI';
-import Context from '~/store/Context';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import coreAPI from '~/components/Core/coreAPI';
 import Category from '../common/Category/category';
 import Item from './item';
 
 function ProductHome() {
-    const { productOverview } = useContext(Context);
+    let location = useLocation();
     function hideProductOverview() {
-        return productOverview === true
-            ? {
-                  display: 'none',
-              }
-            : {
-                  display: 'block',
-              };
+        if (location.pathname === '/') {
+            return {
+                display: 'block',
+            };
+        } else if (location.pathname === '/product') {
+            return {
+                display: 'none',
+            };
+        }
     }
 
     const [prdtListState, setPrdtListState] = useState({
@@ -45,20 +47,35 @@ function ProductHome() {
     //     }
     // };
 
-    const loadProductList = () => {
-        getProductList(prdtListState.page, limit).then((data) => {
-            if (data.error) {
-                setError(data.error);
-                console.log('error');
-            } else {
-                setPrdtListState((prevState) => ({
-                    products: prevState.products.concat(data),
-                    page: prevState.page,
-                    curHeight: prevState.curHeight,
-                }));
-                console.log(data);
-            }
-        });
+    const loadProductList = async () => {
+        /* for fecth */
+        // getProductList(prdtListState.page, limit).then((data) => {
+        //     if (data.error) {
+        //         setError(data.error);
+        //         console.log('error');
+        //     } else {
+        //         setPrdtListState((prevState) => ({
+        //             products: prevState.products.concat(data),
+        //             page: prevState.page,
+        //             curHeight: prevState.curHeight,
+        //         }));
+        //         console.log(data);
+        //     }
+        // });
+
+        /* for axios */
+        const productList = await coreAPI.getProductList(prdtListState.page, limit);
+        if (productList === undefined) {
+            setError(productList.error);
+            console.log('error');
+        } else {
+            setPrdtListState((prevState) => ({
+                products: prevState.products.concat(productList),
+                page: prevState.page,
+                curHeight: prevState.curHeight,
+            }));
+            console.log(productList);
+        }
     };
 
     const onClickLoadMore = () => {

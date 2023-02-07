@@ -171,11 +171,11 @@ function Header() {
                                     <i className="zmdi zmdi-shopping-cart"></i>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex-c-m h-full p-r-25 bor6">
-                            <Link to="/register">
-                                <LoginIcon sx={{fontSize: 26, color:'black'}}/>
-                            </Link>
+                            <div className="flex-c-m h-full p-r-25 bor6">
+                                <Link to="/login">
+                                    <LoginIcon sx={{display: 'flex', color:'black'}}/>
+                                </Link>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -217,6 +217,11 @@ function Header() {
                         >
                             <i className="zmdi zmdi-shopping-cart"></i>
                         </div>
+                    </div>
+                    <div className="flex-c-m h-full p-lr-10 bor6">
+                        <Link to="/login">
+                            <LoginIcon sx={{display: 'flex', color:'black'}}/>
+                        </Link>
                     </div>
                 </div>
 

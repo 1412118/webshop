@@ -4,7 +4,7 @@ import './App.css';
 import { Fragment } from 'react';
 
 import { DefaultLayout } from './components/Layout';
-import Provider from './store/Provider';
+import Provider from './store/ContextAPI/Provider';
 
 function App() {
     return (

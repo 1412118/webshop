@@ -1,17 +1,22 @@
-GET https://6356d5a99243cf412f8e9924.mockapi.io/api/products?page=1&limit=4
+GET http://localhost:5001/api/auth/
+
 
 ###
 
-POST https://6356d5a99243cf412f8e9924.mockapi.io/api/users
+POST http://localhost:5001/api/auth/register
 Content-Type: application/json
 
 {
-    "id": "1",
-    "email": "dat",
-    "password": "dat",
-    "fullname": "dat"
+    "email": "dat1",
+    "password": "dat1"
 }
 
 
 ###
-GET https://6356d5a99243cf412f8e9924.mockapi.io/api/users/1
+POST http://localhost:5001/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "dat1",
+    "password": "dat1"
+}
