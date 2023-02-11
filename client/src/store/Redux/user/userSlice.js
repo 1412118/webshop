@@ -11,6 +11,7 @@ export const login = createAsyncThunk('user/login', async (payload) => {
     const data = await coreAPI.login(payload);
 
     //save data to local storage
+    localStorage.setItem('jwt', data.jwt);
     localStorage.setItem('user', JSON.stringify(data.user));
     //return user data
     return data.user;
