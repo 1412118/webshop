@@ -2,6 +2,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import Header from '~/common/Header';
 import { login } from '~/store/Redux/user/userSlice';
 import LoginForm from '../LoginForm';
 
@@ -37,10 +38,11 @@ function Login(props) {
     };
 
     return (
-        <div>
+        <>
+            <Header />
             <LoginForm onSubmit={handleSubmit} />
             {redirectUser()}
-        </div>
+        </>
     );
 }
 

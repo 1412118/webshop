@@ -5,11 +5,11 @@ import Product from '~/pages/Product';
 import ProductDetailPage from '~/pages/Product/productDetailPage';
 //public routes
 const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/product', component: Product },
-    { path: '/product/:productId', component: ProductDetailPage },
-    { path: '/register', component: Register, layout: 'register' },
-    { path: '/login', component: Login, layout: 'login' },
+    { path: '/', page: Home },
+    { path: '/product', page: Product },
+    { path: '/product/:productId', page: ProductDetailPage },
+    { path: '/register', page: Register },
+    { path: '/login', page: Login },
 ];
 const privateRoutes = [];
 

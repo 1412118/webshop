@@ -10,11 +10,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme } from '@mui/material/styles';
-import InputField from '~/components/Layout/common/FormCotrols/InputField';
-import PasswordField from '~/components/Layout/common/FormCotrols/PasswordField';
 import Checkbox from '@mui/material/Checkbox';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import styled from 'styled-components';
+import InputField from '~/components/FormCotrols/InputField';
+import PasswordField from '~/components/FormCotrols/PasswordField';
 
 LoginForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -26,7 +26,7 @@ const schema = yup
         password: yup
             .string()
             .required('Please enter your password')
-            .min(8, 'Your password muat be at least 8 characters'),
+            .min(8, 'Your password must be at least 8 characters'),
     })
     .required();
 

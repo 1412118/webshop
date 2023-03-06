@@ -1,1 +1,7 @@
-export { default as DefaultLayout } from './DefaultLayout';
+const { Container } = require('@mui/material');
+
+const Layout = ({ children }) => {
+    return <>{children}</>;
+};
+
+export default Layout;

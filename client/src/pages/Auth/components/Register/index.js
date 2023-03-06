@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import RegisterForm from '../RegisterForm';
-import coreAPI from '~/components/Core/coreAPI';
+import coreAPI from '~/components/api/coreAPI';
 
 Register.propTypes = {};
 
