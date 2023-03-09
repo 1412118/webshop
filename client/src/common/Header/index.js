@@ -5,7 +5,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import './styles.scss';
 import { Container } from '@mui/material';
-
 function Header() {
     return (
         <nav className="header">
@@ -18,7 +17,7 @@ function Header() {
                         <ul>
                             {NAVLINKS.map((e) => {
                                 return (
-                                    <li>
+                                    <li key={e.text}>
                                         <Link to={e.href}>{e.text}</Link>
                                     </li>
                                 );

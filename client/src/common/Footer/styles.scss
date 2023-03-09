@@ -1,0 +1,105 @@
+.footer{
+    padding-top: 75px;
+    padding-bottom: 32px;
+    background-color: #222;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .MuiContainer-root{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+        @media screen and (max-width: 992px){
+           flex-wrap: wrap;
+        }
+
+    }
+    &__categories, &__help, &__getintouch, &__newsetter{
+        width: 25%;
+        & div {
+            font-family: 'Montserrat';
+            color: #fff;
+            font-size: 15px;
+        }
+
+        & a{
+            font-family: 'Poppins';
+            font-weight: 400;
+            color:#b2b2b2;
+            text-decoration: none;
+            height: 24px;
+            font-size: 13px;
+        }
+
+        & p{
+            font-family: 'Poppins';
+            font-weight: 400;
+            color:#b2b2b2;
+            margin: 0;
+            line-height: 1.923;
+            font-size: 13px;
+        }
+        @media screen and (max-width: 992px){
+            width: calc(50% - 15px);
+        }
+    }
+
+    &__newsetter{
+        & input{
+            font-family: 'Poppins';
+            font-weight: 400;
+            font-size: 13px;
+        }
+    }
+
+    &__btnsubscribe{
+        background-color: #717fe0;
+        border-radius: 23px;
+        display: flex;
+        justify-content: center;
+        width: 179px;
+        height: 46px;
+        & button{
+            background-color: transparent;
+            border: none;
+            color: #fff;
+        }
+        margin-top: 18px;
+    }
+    
+    &__categories, &__help{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        & div{
+            padding-bottom: 20px;
+        }
+    }
+
+    &__social{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    &__title{
+        padding-bottom: 30px;
+    }
+
+    &__gitelements{
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+    }   
+
+    &__newsetter{
+        .css-7obqij-MuiInputBase-root-MuiInput-root{
+            border-bottom: 1px solid #fff;
+            ::before{
+                border-bottom: 1px solid red;
+            }
+        }
+    }
+}
